@@ -41,7 +41,6 @@ public class Demo03 {
             field.set(u4,"张勇杰3");
             System.out.println(u4.getName());
             //通过反射API操作属性
-            SimpleDateFormat
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
