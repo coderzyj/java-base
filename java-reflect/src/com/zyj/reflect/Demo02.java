@@ -1,7 +1,10 @@
 package com.zyj.reflect;
 
+import com.zyj.bean.User;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -46,7 +49,13 @@ public class Demo02 {
             Constructor a = clazz.getDeclaredConstructor(int.class,int.class,String.class);
             System.out.println("获得的构造器"+a);
             System.out.println(setUname);
-        } catch (ClassNotFoundException e) {
+            User user = (User)clazz.newInstance();
+            setUname.invoke(user,"zyj");
+            Method getUname = clazz.getMethod("getName");
+            System.out.println("666"+getUname.invoke(user));
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
     }
