@@ -28,6 +28,7 @@ public class Emp {
     }
 
     public void setEmpno(String empno) {
+        System.out.println("1222");
         this.empno = empno;
     }
 

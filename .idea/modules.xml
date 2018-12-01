@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/java-DynamicCompile/java-DynamicCompile.iml" filepath="$PROJECT_DIR$/java-DynamicCompile/java-DynamicCompile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-Javassist/java-Javassist.iml" filepath="$PROJECT_DIR$/java-Javassist/java-Javassist.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-annotation/java-annotation.iml" filepath="$PROJECT_DIR$/java-annotation/java-annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-base.iml" filepath="$PROJECT_DIR$/java-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-reflect/java-reflect.iml" filepath="$PROJECT_DIR$/java-reflect/java-reflect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-scriptEngineRhino/java-scriptEngineRhino.iml" filepath="$PROJECT_DIR$/java-scriptEngineRhino/java-scriptEngineRhino.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-thread/java-thread.iml" filepath="$PROJECT_DIR$/java-thread/java-thread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-测试脚本引擎Rhino/java-测试脚本引擎Rhino.iml" filepath="$PROJECT_DIR$/java-测试脚本引擎Rhino/java-测试脚本引擎Rhino.iml" />
     </modules>
   </component>
 </project>

@@ -3,6 +3,7 @@ package com.zyj.javassist;
 import javassist.*;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -54,23 +55,68 @@ public class Demo02 {
 
     }
 
-
+    /**
+     * 修改已有方法的信息
+     * @throws Exception
+     */
     public static void test03()throws Exception{
        ClassPool pool = ClassPool.getDefault();
        CtClass cc = pool.get("com.zyj.javassist.Emp");
 
        CtMethod cm = cc.getDeclaredMethod("sayHello",new CtClass[]{CtClass.intType});
         cm.insertBefore("System.out.println($1);System.out.println(\"start!!!\");");
-
+        cm.insertAfter("System.out.println(\"end!!!!!!\");");
+    //在某一行前面加上代码
+        cm.insertAt(27,"empno = \"19191\";");
         //通过反射调用新生成的方法
         Class clazz = cc.toClass();
         Object obj = clazz.newInstance();
         Method m = clazz.getDeclaredMethod("sayHello",int.class);
-        Object result = m.invoke(obj, 1111);
-        System.out.println(result);
+        m.invoke(obj, 1111);
+        Method m2 = clazz.getDeclaredMethod("getEmpno",null);
+        Object o = m2.invoke(obj);
+        System.out.println(o);
+    }
 
+    public static void test04()throws Exception{
+        ClassPool pool = ClassPool.getDefault();
+        CtClass cc = pool.get("com.zyj.javassist.Emp");
+
+        //CtField f1 = CtField.make("private int no;",cc);
+
+          CtField f1 = new CtField(CtClass.intType,"salary",cc);
+          f1.setModifiers(Modifier.PRIVATE);
+          cc.addField(f1);
+            //获取指定的属性
+            cc.getDeclaredField("salary");
+            //增加相应的get和set方法
+          /*cc.addMethod(CtNewMethod.getter("getSalary",f1));   //不可行，原因未知
+          cc.addMethod(CtNewMethod.getter("setSalary",f1));*/
+            //第一张方法：：这样可行
+          /*cc.addMethod(CtNewMethod.make("public void setSalary(int salary){this.salary = salary;}",cc));
+          cc.addMethod(CtNewMethod.make("public int getSalary(){return this.salary;}",cc));*/
+
+          //第二种方法：亲测可行
+        CtMethod setSalary = new CtMethod(CtClass.voidType, "setSalary", new CtClass[]{CtClass.intType}, cc);
+        setSalary.setBody("this.salary = salary;");
+        setSalary.setModifiers(Modifier.PUBLIC);
+        CtMethod getSalary = new CtMethod(CtClass.intType, "getSalary", null, cc);
+        getSalary.setBody("return salary;");
+        getSalary.setModifiers(Modifier.PRIVATE);
+        cc.addMethod(setSalary);
+          cc.addMethod(getSalary);
+          Class clazz = cc.toClass();
+          Object obj = clazz.newInstance();
+          Field field = clazz.getDeclaredField("salary");
+          System.out.println(field.getName());
+          Method setter = clazz.getDeclaredMethod("setSalary",int.class);
+          setter.invoke(obj,3000);
+          Method getter = clazz.getDeclaredMethod("getSalary");
+          getter.setAccessible(true);
+          Object re = getter.invoke(obj);
+        System.out.println("salary:::"+re);
     }
     public static void main(String[] args) throws Exception {
-        test03();
+        test04();
     }
 }
