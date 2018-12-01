@@ -116,7 +116,33 @@ public class Demo02 {
           Object re = getter.invoke(obj);
         System.out.println("salary:::"+re);
     }
+
+    /**
+     * 操作注解
+     * @throws Exception
+     */
+    public static void test06() throws  Exception{
+        CtClass cc = ClassPool.getDefault().get("com.zyj.javassist.Emp");
+        Object annotation = cc.getAnnotation(Author.class);
+        Author author = (Author) annotation;
+        System.out.println("name:"+author.name()+",year:"+author.year());
+    }
+
+    /**
+     * g构造器
+     * @throws Exception
+     */
+    public static void test05()throws Exception{
+        ClassPool pool = ClassPool.getDefault();
+        CtClass cc = pool.get("com.zyj.javassist.Emp");
+        CtConstructor[] cs = cc.getConstructors();
+        for(CtConstructor c:cs){
+            System.out.println(c.getLongName());
+            //c.insertBeforeBody();
+        }
+
+    }
     public static void main(String[] args) throws Exception {
-        test04();
+        test06();
     }
 }

@@ -8,6 +8,7 @@ package com.zyj.javassist;
  * @Version : v1.0
  * @description
  **/
+@Author(name="zyj",year = 2018)
 public class Emp {
     private String empno;
     private String ename;
