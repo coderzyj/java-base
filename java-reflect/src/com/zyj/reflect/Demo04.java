@@ -38,5 +38,16 @@ public class Demo04 {
                 }
             }
         }
+
+        Method m2 = Demo04.class.getMethod("test02");
+        Type returnType = m2.getGenericReturnType();
+        System.out.println(returnType);
+
+        if(returnType instanceof ParameterizedType){
+            Type[] genericTypes = ((ParameterizedType) returnType).getActualTypeArguments();
+            for(Type t:genericTypes){
+                System.out.println("--"+t);
+            }
+        }
     }
 }

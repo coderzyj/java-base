@@ -21,7 +21,7 @@ public class Demo02 {
         try {
             Class clazz = Class.forName(path);
             //获取类的名字
-            System.out.println(clazz.getName());//获取包名+类名：com.zyj.bean
+             System.out.println(clazz.getName());//获取包名+类名：com.zyj.bean
             System.out.println(clazz.getSimpleName()); //获取类名：User
             //获取属性信息
             //Field[] fields = clazz.getFields();//此方法只能获得public的field
