@@ -21,5 +21,12 @@ public class Demo02 {
         System.out.println(c2.hashCode());
         System.out.println(c3.hashCode());
         //JVM认为被同一个加载器加载的同一个类是相同的类
+        System.out.println(c.getClassLoader());
+        System.out.println(c1.getClassLoader());
+        System.out.println(c2.getClassLoader());
+        System.out.println(c3.getClassLoader());
+        NetClassLoader netClassLoader = new NetClassLoader("d:/myjava");
+        Class c5 = netClassLoader.findClass("com.zyj.test.HelloWorld");
+        System.out.println(c5.getName());
     }
 }
