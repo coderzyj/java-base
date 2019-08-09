@@ -3,6 +3,7 @@ package com.asher.stream.test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
@@ -39,5 +40,12 @@ public class ConsumerTest {
 //            }
 //        }).forEach(System.out::println);
         Stream.iterate(1, n->n<10,n->n*3).forEach(System.out::println);
+        Stack<Integer> stack = new Stack<>();
+        int a = 1; int b = 2;
+        stack.push(a);
+        stack.push(b);
+        a = stack.pop();
+        b = stack.pop();
+        System.out.println("a->"+a+"b->"+b);
     }
 }
