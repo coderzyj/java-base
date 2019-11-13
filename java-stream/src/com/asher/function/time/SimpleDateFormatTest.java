@@ -2,6 +2,7 @@ package com.asher.function.time;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,6 +54,7 @@ public class SimpleDateFormatTest {
         ExecutorService exec = Executors.newFixedThreadPool(10);
         List<Future<LocalDate>> futures = new ArrayList<>();
         for(int i =0;i<10;i++){
+
             Future<LocalDate> f = exec.submit(callable);
             futures.add(f);
         }
@@ -65,5 +67,6 @@ public class SimpleDateFormatTest {
                 e.printStackTrace();
             }
         });
+        exec.shutdown();
     }
 }

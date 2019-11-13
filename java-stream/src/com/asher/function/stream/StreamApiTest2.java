@@ -4,6 +4,7 @@ import com.asher.function.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -110,7 +111,6 @@ public class StreamApiTest2 {
     public static void test7(){
         List<String> list = Arrays.asList("aaa","bbb","ccc","ddd","eee");
         list.stream().map(x -> x.toUpperCase()).forEach(System.out::println);
-
         users.stream().map(User::getName).forEach(System.out::println);
         System.out.println("--------------------------------------------");
         users.stream().sorted((e1,e2) ->{
@@ -120,7 +120,6 @@ public class StreamApiTest2 {
                 return e1.getAge().compareTo(e2.getAge());
             }
         }).forEach(System.out::println);
-
     }
 
     static Stream<Character> filterChracter(String str){

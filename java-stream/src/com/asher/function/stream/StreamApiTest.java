@@ -21,13 +21,30 @@ import java.util.stream.Stream;
  * 3.终止操作（终端操作）
  **/
 public class StreamApiTest {
+    
+    static class A{
+        
+    }
+    static class B extends A{
+        
+    }
+    static class C extends B{
+        
+    }
     public static void main(String[] args) {
         test1();
     }
 
+    
+    
+    
     public static void test1(){
+
+
+
         //1.可以通过Collection系列集合提供的stream()
         List<String> list = new ArrayList<>();
+
         Stream<String> stream = list.stream();
 
         //2.通过Arrays中的静态方法stream获取数组流
